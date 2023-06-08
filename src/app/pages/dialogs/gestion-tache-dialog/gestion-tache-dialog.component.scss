@@ -1,0 +1,29 @@
+.button-container {
+    display: flex; /* utiliser flexbox */
+    justify-content: center; /* centrer horizontalement les boutons */
+    align-items: center; /* centrer verticalement les boutons */
+  }
+  
+  /* styles pour les boutons */
+  .delete-btn, .edit-btn, .finish-btn {
+    background-color: white;
+    margin-right: 1%;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin: 0 10px; /* espace entre les boutons */
+  }
+  .delete-btn {
+    color: red;
+    border: 2px solid red;
+  }
+  .edit-btn {
+    color: orange;
+    border: 2px solid orange;
+  }
+  .finish-btn {
+    color: green;
+    border: 2px solid green;
+  }
+  

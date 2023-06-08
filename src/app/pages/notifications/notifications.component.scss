@@ -1,0 +1,65 @@
+.scrum-board {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: #121212;
+}
+
+.scrum-column {
+  display: flex;
+  flex-direction: column;
+  width: 33.3%;
+  height: 100%;
+}
+
+.scrum-column mat-toolbar {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.column-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 8px;
+  color: #fff;
+}
+
+.drag-handle {
+  cursor: move;
+  color: #fff;
+}
+
+.scrum-list {
+  padding: 8px;
+  overflow-y: auto;
+  flex-grow: 1;
+  background-color: #1f1f1f;
+  border-radius: 8px;
+}
+
+.scrum-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  margin-bottom: 8px;
+  background-color: #292929;
+  border-radius: 8px;
+}
+
+.scrum-content {
+  margin-left: 8px;
+  color: #fff;
+}
+
+.scrum-content h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.scrum-content p {
+  margin: 0;
+  font-size: 14px;
+}

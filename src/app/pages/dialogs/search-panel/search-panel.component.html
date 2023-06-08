@@ -1,0 +1,15 @@
+<mat-dialog-content>
+<mat-autocomplete  #auto="matAutocomplete" >
+    <mat-option [ngStyle]="{'display': chercher.value.length==0 ? 'none' : 'block'}" *ngFor="let email of filteredOptions | async" [value]="email">
+      {{email}}
+    </mat-option>
+  </mat-autocomplete>
+  <input type="text"
+  class="d-flex flex-row" 
+  placeholder="Visualiser le membre choisis par son email en appuyant sur <Enter>"
+  aria-label="text"
+  matInput
+  (keyup.enter)="chercherMembre()"
+  [formControl]="chercher"
+  [matAutocomplete]="auto">
+</mat-dialog-content>

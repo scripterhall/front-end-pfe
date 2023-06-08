@@ -1,0 +1,196 @@
+/* * {
+  box-sizing: border-box;
+}
+
+.logoProjet{
+  width: 80%;
+  height: 70%;
+}
+
+.navbar-toggler-bar {
+  background-color: white;
+  width: 20px;
+}
+
+
+.photo{
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+body {
+  margin: 0px;
+  font-family: 'segoe ui';
+}
+
+.nav {
+  height: 14%;
+  width: 100%;
+  background-color: #4d4d4d;
+  position: fixed;
+  z-index: 9999;
+}
+
+.nav.scrolled {
+  background-color: rgb(161, 161, 161);
+}
+
+.navbar-brand {
+  position: fixed;
+  padding-top: .3125rem;
+  padding-bottom: .3125rem;
+  color: white;
+  margin-left: 17px;
+  margin-top: 3px;
+  text-transform: uppercase;
+}
+
+.nav > .nav-btn {
+  display: none;
+}
+
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #efefef;
+}
+
+.nav > .nav-links > a:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.nav > #nav-check {
+  display: none;
+}
+
+@media (max-width:600px) {
+  .nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  .nav > .nav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+  .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #eee;
+  }
+
+  .nav > .nav-links {
+    display: inline;
+    float: right;
+    font-size: 18px;
+  }
+
+  .nav > .nav-header {
+    display: inline;
+    float: left;
+  }
+
+  .nav > .nav-links > a {
+    display: block;
+    width: 100%;
+  }
+  .nav > #nav-check:not(:checked) ~ .nav-links {
+    height: 0px;
+  }
+  .nav > #nav-check:checked ~ .nav-links {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
+} */
+
+
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(90, 89, 89);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  color: white;
+  height: 9%;
+  width: 100%;
+  z-index: 9999;
+}
+
+.navbar.scrolled {
+  background-color: rgb(161, 161, 161);
+}
+
+.logo-left {
+  width: 140px;
+  height: 50px;
+  margin-left: 40px;
+}
+
+.social-icons {
+  display: flex;
+  margin-right: 40px;
+}
+
+.social-icons a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 30px;
+  color: white;
+  text-decoration: none;
+  font-size:17px;
+  cursor:default;
+  transition: color 0.3s ease;
+}
+
+.photo{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}
+
+.social-icons a:hover{
+  color: rgb(0, 255, 242);
+}
+
+.social-icons a i {
+  margin-bottom: 5px;
+}
+
+.dropdown-navbar{
+  width: 65px;
+}
+
+.nav-item, .nav-link{
+  color:black;
+  font-size: 13px;
+  text-align: center;
+}
+
+.nav-link:hover{
+  cursor: pointer;
+}
+
+.navbar a.active {
+  font-weight: bold;
+}
+
+.photoProfil{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}

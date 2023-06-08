@@ -1,0 +1,153 @@
+<div class="content">
+  <div class="d-flex align-items-stretch">
+    <select class="form-select custom-select select-blue" [(ngModel)]="selectedSprintId" (change)="getTicketsTacheBySprint($event.target.value)">
+      <option value="">-- Sélectionner un sprint --</option>
+      <option *ngFor="let sprint of sprints; index as i" [value]="sprint.id" [selected]="sprint.etat === 'en cours'">
+        {{ 'Sprint ' + (i+1) }} {{ sprint.etat }}
+      </option>
+    </select>
+
+    <div class="input-group ms-3">
+      <input type="text" id="inputSearch" class="form-control" placeholder="Chercher tâche par mail, nom ou prénom" [disabled]="!selectedSprintId" [(ngModel)]="searchMember" (input)="filterTicketsTache()">
+      <span id="btnSearch" class="input-group-text">
+        <i class="fas fa-search"></i>
+      </span>
+    </div>
+  </div>
+
+    <br>
+
+    <!-- en retard -->
+  <div class="column en-retard">
+    <div class="column-title">
+      En retard
+      <i class="fas fa-exclamation-circle icone"></i>
+    </div>
+
+    <div id="en retard" class="card-body">
+      <span *ngFor="let tache of ticketsTache" [draggable]="true" (drop)="onDrop($event, tache)">
+      <span class="card" *ngIf="tache.etat === 'en retard'" [type]="'warning'" [dismissible]="false">
+        <ng-container [diabled]="tache.etat == 'en retard'">
+          <span>
+            <h2 class="card-title">{{tache.titre}}</h2>
+            <p class="card-hours">{{tache.nbHeurs}} heure(s)</p>
+            <div class="card-member">
+              <button mat-icon-button *ngIf="tache.membreId!=null" [matMenuTriggerFor]="menu" (click)="verifierPersPris(tache.membre)" style="border:1px solidblack;" aria-label="Example icon-button with a menu">
+                <mat-icon>how_to_reg</mat-icon>
+              </button>
+            </div>
+          </span>
+        </ng-container>
+      </span>
+      </span>
+    </div>
+  </div>
+
+  <!-- à faire -->
+  <div class="column a-faire">
+    <div class="column-title">
+      A faire
+      <i class="fas fa-tasks icone"></i>
+
+    </div>
+    <div id="à faire" class="card-body">
+      <span *ngFor="let tache of ticketsTache" [draggable]="true" (drop)="onDrop($event, tache)">
+      <span class="card" *ngIf="tache.etat === 'à faire'" [type]="'warning'" [dismissible]="false">
+        <ng-container [diabled]="tache.etat == 'à faire'">
+          <span>
+            <h2 class="card-title">{{tache.titre}}</h2>
+            <p class="card-hours">{{tache.nbHeurs}} heure(s)</p>
+            <div class="card-member">
+              <button class="addMember" mat-icon-button *ngIf="tache.membreId==null" [matMenuTriggerFor]="menu" (click)="prendreTicket(tache.id)" style="border:1px solidblack;" aria-label="Example icon-button with a menu">
+                <mat-icon>person_add</mat-icon>
+              </button>
+              <button mat-icon-button *ngIf="tache.membreId!=null" [matMenuTriggerFor]="menu" (click)="verifierPersPris(tache.membre)" style="border:1px solidblack;" aria-label="Example icon-button with a menu">
+                <mat-icon>how_to_reg</mat-icon>
+              </button>
+            </div>
+          </span>
+        </ng-container>
+      </span>
+      </span>
+    </div>
+  </div>
+
+  <!-- à vérifier -->
+  <div class="column a-verifier">
+    <div class="column-title">
+      A vérifier
+      <i class="fas fa-search icone"></i>
+
+    </div>
+    <div id="à vérifier" class="card-body">
+      <span *ngFor="let tache of ticketsTache" [draggable]="true" (drop)="onDrop($event, tache)">
+      <span class="card" *ngIf="tache.etat === 'à vérifier'" [type]="'warning'" [dismissible]="false">
+        <ng-container [diabled]="tache.etat == 'à vérifier'">
+          <span>
+            <h2 class="card-title">{{tache.titre}}</h2>
+            <p class="card-hours">{{tache.nbHeurs}} heure(s)</p>
+            <div class="card-member">
+              <button mat-icon-button *ngIf="tache.membreId!=null" [matMenuTriggerFor]="menu" (click)="verifierPersPris(tache.membre)" style="border:1px solidblack;" aria-label="Example icon-button with a menu">
+                <mat-icon>how_to_reg</mat-icon>
+              </button>
+            </div>
+          </span>
+        </ng-container>
+      </span>
+      </span>
+    </div>
+  </div>
+
+
+  <!-- en cours -->
+  <div class="column en-cours">
+    <div class="column-title">
+      En cours
+      <i class="fas fa-spinner icone"></i>
+    </div>
+    <div id="en cours" class="card-body">
+      <span *ngFor="let tache of ticketsTache" [draggable]="true" (drop)="onDrop($event, tache)">
+      <span class="card" *ngIf="tache.etat === 'en cours'" [type]="'warning'" [dismissible]="false">
+        <ng-container [diabled]="tache.etat == 'en cours'">
+          <span>
+            <h2 class="card-title">{{tache.titre}}</h2>
+            <p class="card-hours">{{tache.nbHeurs}} heure(s)</p>
+            <div class="card-member">
+              <button mat-icon-button *ngIf="tache.membreId!=null" [matMenuTriggerFor]="menu" (click)="verifierPersPris(tache.membre)" style="border:1px solidblack;" aria-label="Example icon-button with a menu">
+                <mat-icon>how_to_reg</mat-icon>
+              </button>
+            </div>
+          </span>
+        </ng-container>
+      </span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Terminé -->
+  <div class="column termine">
+    <div class="column-title">
+      Terminé
+      <i class="fas fa-check icone"></i>
+    </div>
+
+    <div id="terminé" class="card-body">
+      <span *ngFor="let tache of ticketsTache" (drop)="onDrop($event, tache)">
+        <span class="card" *ngIf="tache.etat === 'terminé'" [type]="'warning'" [dismissible]="false">
+          <ng-container [diabled]="tache.etat == 'terminé'">
+            <span>
+              <h2 class="card-title">{{tache.titre}}</h2>
+              <p class="card-hours">{{tache.nbHeurs}} heure(s)</p>
+              <div class="card-member">
+                <button mat-icon-button *ngIf="tache.membreId!=null" [matMenuTriggerFor]="menu" (click)="verifierPersPris(tache.membre)" style="border:1px solidblack;" aria-label="Example icon-button with a menu">
+                  <mat-icon>how_to_reg</mat-icon>
+                </button>
+              </div>
+            </span>
+          </ng-container>
+        </span>
+      </span>
+    </div>
+  </div>
+  </div>
+

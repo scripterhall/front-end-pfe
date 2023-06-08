@@ -1,0 +1,19 @@
+<div class="container">
+    <mat-card class="password-reset-card">
+      <mat-card-header class="d-flex bd-highlight mb-3">
+        <mat-card-title class="form-title">Saisir votre email</mat-card-title>
+        <a routerLink="/auth" class="ms-auto p-2 bd-highlight" matTooltip="revenir pour s'authentifier"><mat-icon>launch</mat-icon></a>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="password-reset-form" [formGroup]="emailForm" (ngSubmit)="submitForm()">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Entrez votre adresse e-mail" type="email" formControlName="email"  >
+            <mat-error *ngIf="this.emailForm.get('email').hasError('required')">Email est requis.</mat-error>
+            <mat-error *ngIf="this.emailForm.get('email').hasError('invalidEmail') && !this.emailForm.get('email').hasError('required')">Email invalide.</mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" [disabled]="emailForm.invalid" type="submit">Réinitialiser</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>

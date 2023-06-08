@@ -1,0 +1,117 @@
+.column-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  text-align: left;
+  margin-bottom: 10px;
+  padding: 11px;
+  border-radius: 5px;
+}
+
+.column-title .icone {
+  float: right;
+}
+
+.en-retard {
+  background-image: linear-gradient(rgb(226, 0, 0), rgb(170, 0, 0));
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.a-faire {
+  background-image: linear-gradient(rgb(107, 107, 107), rgb(50, 50, 50));
+}
+
+
+.a-verifier {
+  background-image: linear-gradient(rgb(255, 136, 0), rgb(255, 204, 0));
+}
+
+.en-cours {
+  background-image: linear-gradient(rgb(0, 110, 255), rgb(0, 70, 170));
+}
+
+
+.termine {
+  background-image: linear-gradient(to bottom, rgb(0, 105, 0), rgb(0, 70, 0));
+}
+
+.card-title {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-top: 0;
+  color:black;
+}
+
+.card-hours {
+  font-size: 12px;
+  margin-bottom: 5px;
+  margin-top: 0;
+  font-style: italic;
+  color: rgb(73, 72, 72);
+}
+
+.card-member {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+}
+
+
+.column {
+  float: left;
+  width: 20%;
+  padding: 2px;
+  height: 100%;
+}
+
+.card {
+  background-color: white;
+  border-radius: 5px;
+  padding: 7px;
+  margin-bottom: 10px;
+  position: relative;
+  border-top: 5px solid rgb(49, 49, 49);
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column; /* Changer la direction d'affichage en colonne */
+}
+
+
+.custom-select {
+  background-color: rgba(211, 211, 211, 0.26);
+  color:white;
+}
+
+.select-blue {
+  background-color: rgb(128, 201, 223);
+}
+
+.select-blue option {
+  background-color: rgb(228, 228, 228);
+  color: black;
+}
+
+#btnSearch{
+  background-color: rgb(209, 2, 2);
+  color:white
+}
+
+#inputSearch{
+  color:black;
+}
+
+.content{
+  margin-top: 2%;
+}
+
+

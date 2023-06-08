@@ -1,0 +1,240 @@
+<div class="content">
+  <div class="row" *ngIf="role== 'chefProjet'" id="parent">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="titre d-flex align-items-center justify-content-between">
+            <span>
+              <i class="fas fa-user"></i> Informations personnelles
+            </span>
+            <button class="btn btn-sm btnModifier" (click)="activerInputs()">Modifier</button>
+          </h5>
+          <hr>
+
+        </div>
+        <div class="card-body">
+          <form [formGroup]="modifChefProjetForm" (ngSubmit)="modifierChefProjet()">
+            <div class="row">
+              <div class="col-md-3 px-md-3">
+                <div class="form-group">
+                  <label>Nom d'utilisateur</label>
+                  <input [readOnly]="inputsDesactives" class="form-control" readonly type="text" formControlName="username" />
+                </div>
+              </div>
+
+              <div class="col-md-4 pl-md-0">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">E-mail</label>
+                  <input [readOnly]="inputsDesactives" class="form-control" type="email" formControlName="email" />
+                </div>
+              </div>
+
+              <div class="col-md-5 pl-md-0">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Numéro de téléphone</label>
+                  <input [readOnly]="inputsDesactives" class="form-control" type="text" formControlName="telephone" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-md-1">
+                <div class="form-group">
+                  <label>Nom</label>
+                  <input [readOnly]="inputsDesactives" class="form-control" type="text" formControlName="nom" />
+                </div>
+              </div>
+              <div class="col-md-6 pl-md-1">
+                <div class="form-group">
+                  <label>Prénom</label>
+                  <input [readOnly]="inputsDesactives" class="form-control" type="text" formControlName="prenom" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Adresse</label>
+                  <input [readOnly]="inputsDesactives" class="form-control" type="text" formControlName="adresse" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 pr-md-1">
+                <div class="form-group">
+                  <label>Nouveau mot de passe</label>
+                  <input [readOnly]="inputsDesactives" class="form-control" type="password" formControlName="pwd" />
+                </div>
+              </div>
+            </div>
+
+            <label>Nouvelle photo de profil</label>
+            <input [readOnly]="inputsDesactives" class="form-control" type="file" (change)="onPhotoSelected($event)" />
+            <!-- <img [src]="base64Image ? base64Image : 'data:image/jpeg;base64,' + userRolesToken.chefProjet.photo" alt="PhotoChefProjet" /> -->
+
+
+            <hr>
+            <div class="card-footer text-center">
+              <button class="btn btn-fill btn-danger" [hidden]="btnHidden" [disabled]="modifChefProjetForm.invalid">
+                <i class="fas fa-check"></i> Enregistrer</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card card-user">
+        <div class="card-body">
+          <p class="card-text"></p>
+          <div class="author">
+
+            <!-- <img alt="photoProfil" class="photoProfil" [src]="base64Image" /> -->
+            <img [src]="base64Image ? base64Image : 'data:image/jpeg;base64,' + userRolesToken.chefProjet.photo" alt="photoProfil" class="photoProfil" />
+
+
+            <h5 class=" title">{{userRolesToken.chefProjet.nom}} {{userRolesToken.chefProjet.prenom}}</h5>
+
+
+              <div class="carte">
+
+                <div class="carte">
+                  <h5 class="nom">
+                    Vous êtes inscris en
+                    <strong>ProJiro</strong> le
+                    {{userRolesToken.chefProjet.dateInscription |date}}
+                  </h5>
+
+                  <p class="description" *ngIf="role=='dev team'"><i class="fas fa-laptop-code"></i> Développeur</p>
+                  <p class="description" *ngIf="role=='po'"><i class="fas fa-user-edit"></i> Product Owner</p>
+                  <p class="description" *ngIf="role=='chefProjet'"><i class="fas fa-user-tie"></i> Chef Projet</p>
+
+
+                </div>
+
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="row" *ngIf="role != 'chefProjet'" id="parent">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="titre d-flex align-items-center justify-content-between">
+            <span>
+              <i class="fas fa-user"></i> Informations personnelles
+            </span>
+            <button class="btn btn-sm btnModifier" (click)="activerInputs()">Modifier</button>
+          </h5>
+          <hr>
+
+        </div>
+        <div class="card-body">
+          <form [formGroup]="modifMembreForm" (ngSubmit)="modifierMembre()">
+            <div class="row">
+              <div class="col-md-3 px-md-3">
+                <div class="form-group">
+                  <label>Nom d'utilisateur</label>
+                  <input [readOnly]="inputsDesactives" class="form-control" readonly type="text" formControlName="username" />
+                </div>
+              </div>
+
+              <div class="col-md-4 pl-md-0">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">E-mail</label>
+                  <input [readOnly]="inputsDesactives" class="form-control" type="email" formControlName="email" />
+                </div>
+              </div>
+
+              <div class="col-md-5 pl-md-0">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Numéro de téléphone</label>
+                  <input [readOnly]="inputsDesactives" class="form-control" type="text" formControlName="telephone" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-md-1">
+                <div class="form-group">
+                  <label>Nom</label>
+                  <input [readOnly]="inputsDesactives" class="form-control" type="text" formControlName="nom" />
+                </div>
+              </div>
+              <div class="col-md-6 pl-md-1">
+                <div class="form-group">
+                  <label>Prénom</label>
+                  <input [readOnly]="inputsDesactives" class="form-control" type="text" formControlName="prenom" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Adresse</label>
+                  <input [readOnly]="inputsDesactives" class="form-control" type="text" formControlName="adresse" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 pr-md-1">
+                <div class="form-group">
+                  <label>Nouveau mot de passe</label>
+                  <input [readOnly]="inputsDesactives" class="form-control" type="password" formControlName="pwd" />
+                </div>
+              </div>
+            </div>
+
+            <label>Nouvelle photo de profil</label>
+            <input [readOnly]="inputsDesactives" class="form-control" type="file" (change)="onPhotoSelected($event)" />
+            <!-- <img [src]="base64Image ? base64Image : 'data:image/jpeg;base64,' + userRolesToken.membre.photo" alt="PhotoChefProjet" /> -->
+
+
+            <hr>
+            <div class="card-footer text-center">
+              <button class="btn btn-fill btn-danger" [hidden]="btnHidden" [disabled]="modifMembreForm.invalid">
+                <i class="fas fa-check"></i> Enregistrer</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card card-user">
+        <div class="card-body">
+          <p class="card-text"></p>
+          <div class="author">
+
+            <!-- <img alt="photoProfil" class="photoProfil" [src]="base64Image" /> -->
+
+            <img [src]="base64Image ? base64Image : 'data:image/jpeg;base64,' + userRolesToken.membre.photo" alt="photoProfil" class="photoProfil" />
+
+
+            <h5 class=" title">{{userRolesToken.membre.nom}} {{userRolesToken.membre.prenom}}</h5>
+
+              <div class="carte">
+                <h5 class="nom">
+                  <p class="status"> {{userRolesToken.membre.status}} </p>
+                  Vous êtes inscris en
+                  <strong>ProJiro</strong> le
+                  {{userRolesToken.membre.dateInscription |date}}
+                </h5>
+
+                <p class="description" *ngIf="role=='dev team'"><i class="fas fa-laptop-code"></i> Développeur</p>
+                <p class="description" *ngIf="role=='po'"><i class="fas fa-user-edit"></i> Product Owner</p>
+                <p class="description" *ngIf="role=='chefProjet'"><i class="fas fa-user-tie"></i> Chef Projet</p>
+
+
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

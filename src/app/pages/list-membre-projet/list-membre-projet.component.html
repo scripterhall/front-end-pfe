@@ -1,0 +1,48 @@
+<div class="container card-chart" style="margin-left:0%;width:100%;">
+<h1 class="titre"><i class="fas fa-laptop-code"></i> Les développeurs du projet</h1>
+<div class="row">
+
+    <div id="element" class="col-lg-3 col-md-3  col-sm-3" style="margin-right:-1%" *ngFor="let role of listeRole">
+        <ng-container *ngIf="role.type=='dev team'">
+        <div class="card" >
+        <div class="card-header d-flex justify-content-center ">
+        <ng-container *ngIf="role.membre.photo!=null">
+        <img class="profilDev" [src]="'data:image/png;base64,'+role.membre.photo" alt="Decoded Image">
+        </ng-container>
+        <ng-container *ngIf="role.membre.photo==null">
+          <img class="profilDev" src="./../../../assets/img/icon.png" alt="Decoded Image">
+          </ng-container>  
+    </div>
+
+        <div class="card-body">
+              <div class="nomPrenom">{{role.membre.nom}}  {{role.membre.prenom}}</div><br>
+
+              <div class="body">
+                <span><i class="fas fa-home"></i> {{role.membre.adresse}}</span><br>
+                <span><i class="fas fa-envelope"></i> {{role.membre.email}}</span><br>
+                <span><i class="fas fa-phone"></i> {{role.membre.telephone}}</span><br>
+                <span class="badge" [ngClass]="{'bg-success':role.membre.status =='ACTIF','bg-danger':role.membre.status =='INACTIF'}">
+                   {{role.membre.status}}
+                </span>
+              </div>
+
+              <button
+              matTooltip="Mon performance"
+              mat-fab
+              style="margin-left:35%;margin-top:5%;margin-bottom:-7%;"
+              color="warn"
+              (click)="openPerformanceDialog(role.membre)">
+                <mat-icon>remove_red_eye</mat-icon>
+              </button>
+        </div>
+        <hr style="margin-bottom:-3%">
+        <div class="card-footer" >
+          Est inscrit en ProJiro le <br>
+          <span class="date"><i class="fas fa-calendar-check"></i>  {{role.membre.dateInscription|date:'dd-MMMM-yyyy'}}</span>
+        </div>
+    </div>
+
+    </ng-container>
+</div>
+</div>
+</div>

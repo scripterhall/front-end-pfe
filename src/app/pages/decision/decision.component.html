@@ -1,0 +1,43 @@
+
+<div class="card col-lg-4 col-md-4 col-sm-4" style=" margin-top:9%;" *ngIf="this.role && this.dateExpirationToken > aujourdhui ">
+
+        <!-- Image à la une -->
+        <div class="card-image"><img src="../../../assets/img/numeryx.png" alt="logo" /></div>
+        <!-- Fin de l'image à la une -->
+
+        <!-- Corp de notre carte -->
+        <div class="card-body">
+
+            <!-- Date de publication de l'article-->
+            <div class="card-date">
+                <h4 style="font-weight: bold;"> projet {{role.projet.nom}}</h4>
+                <time>De {{role.projet.dateDebut|date}} à {{role.projet.dateFin|date}}</time>
+            </div>
+
+            <!-- Titre de l'article -->
+            <div class="card-title">
+                <h3 style="font-family: 'Playfair Display', serif;" *ngIf="role.type=='po' || role.type=='scrum master'">Vous Êtes Le <span class="badge rounded-pill bg-light" style="font-size:15px">{{role.type}}</span></h3>
+                <h3 style="font-family: 'Playfair Display', serif;" *ngIf="role.type=='dev team'">Vous êtes un membre de {{role.type}}</h3>
+            </div>
+            <!-- Extrait de l'article -->
+            <div class="card-excerpt">
+                <p>{{role.permission}}</p>
+            </div>
+
+
+            <div class="d-flex justify-content-center">
+                <button mat-raised-button (click)="accepter()" style="margin-right:1%;"  color="primary">accepter</button>
+                <button mat-raised-button (click)="refuser()"  color="warn">refuser</button>
+            </div>
+
+
+        </div>
+        <!-- Fin du corp de notre carte -->
+        
+</div>
+
+<div class="invitation-card" *ngIf="this.dateExpirationToken <= aujourdhui">
+    <h1>Votre invitation expirée</h1>
+    <p class="expiration-date">Cette invitation a expiré le {{this.dateExpirationToken|date:'dd-MM-yyyy'}}</p>
+    <a href="https://www.numeryx.fr/fr/numeryx-technologies-inaugure-filiale-tunisie"  class="btn-anuler">Retourner à la page Numeryx</a>
+</div>

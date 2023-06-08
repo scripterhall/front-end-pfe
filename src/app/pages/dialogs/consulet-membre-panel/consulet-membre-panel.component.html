@@ -1,0 +1,160 @@
+<h2 mat-dialog-title>Profil : {{data.membre.nom}} {{data.membre.prenom}}</h2>
+<mat-dialog-content class="content" style="height:80%;max-height: 80%;">
+
+    <div class="row mb-3">
+
+        <mat-card class="col-lg-7 col-md-7 col-sm-7 col-xs-7" >
+
+            <mat-card-content class="content">
+                <div class="row">
+                  <img class="col-lg-6 col-sm-6 col-md-6 col-xs-6 rounded w-75 h-100" src="data:application/octet-stream;base64,{{ data.membre.photo }}">
+                    <mat-list role="list" class="col-lg-6 col-sm-6 col-md-6 col-xs-6 mt-2">
+                        <mat-list-item role="listitem">
+                            <div class="d-flex justify-content-between">
+                                <span style="color:rgba(0,0,0,0.3);display:flex">
+                                    <mat-icon>account_box</mat-icon> nom utilisateur
+                                </span>
+                                <span class="text-warning">
+                                     {{data.membre.username}}
+                                </span>
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item role="listitem">
+                            <div class="d-flex justify-content-between">
+                                <span style="color:rgba(0,0,0,0.3);display:flex">
+                                    <mat-icon>face</mat-icon> nom
+                                </span>
+                                <span class="text-warning">
+                                     {{data.membre.nom}}
+                                </span>
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item role="listitem">
+                            <div class="d-flex justify-content-between">
+                                <span style="color:rgba(0,0,0,0.3);display:flex">
+                                    <mat-icon>face</mat-icon> prenom
+                                </span>
+                                <span class="text-warning">
+                                     {{data.membre.prenom}}
+                                </span>
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item role="listitem">
+                            <div class="d-flex justify-content-between">
+                                <span style="color:rgba(0,0,0,0.3);display:flex">
+                                    <mat-icon>location_on</mat-icon> adresse
+                                </span>
+                                <span class="text-warning">
+                                     {{data.membre.adresse}}
+                                </span>
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item role="listitem">
+                            <div class="d-flex justify-content-between">
+                                <span style="color:rgba(0,0,0,0.3);display:flex">
+                                    <mat-icon>date_range</mat-icon> date inscription
+                                </span>
+                                <span class="text-warning">
+                                     {{data.membre.dateInscription|date:'dd MMMM yyyy'}}
+                                </span>
+                            </div>
+                        </mat-list-item>
+                      </mat-list>
+                </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+            <mat-card-header>
+              <mat-card-title>Ma Participation</mat-card-title>
+            </mat-card-header>
+            <mat-card-content style="height: 100%;">
+                <canvas id="myChart" width="100%" height="100%"></canvas>
+            </mat-card-content>
+          </mat-card>
+
+
+    </div>
+
+    <div class="row">
+        <mat-card class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <mat-card-content class="content">
+                <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 " style="margin-left:-2%;">
+                    <h3 class="d-flex flex-row">
+                        <mat-icon>help_outline</mat-icon>
+                        Contacts
+                    </h3>
+                    <mat-list role="list" style="width:100%;">
+                        <mat-list-item role="listitem">
+                            <div class="d-flex justify-content-between">
+                                <span style="color:rgba(0,0,0,0.3);display:flex">
+                                    <mat-icon> mail_outline</mat-icon> mail
+                                </span>
+                                <span class="text-warning">
+                                     {{data.membre.email}}
+                                </span>
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item role="listitem">
+                            <div class="d-flex justify-content-between">
+                                <span style="color:rgba(0,0,0,0.3);display:flex">
+                                    <mat-icon> phone</mat-icon> telephone
+                                </span>
+                                <span class="text-warning">
+                                     {{data.membre.telephone}}
+                                </span>
+                            </div>
+                        </mat-list-item>
+                      </mat-list>
+                </div>
+                <!-- spinners -->
+                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 " style="margin-left:2%;">
+                    <h3 class="d-flex flex-row">
+                        <mat-icon>error_outline</mat-icon>
+                        Participation
+                    </h3>
+                    <div class="d-flex text-center justify-content-between" style="margin-top:6%">
+                        <div>
+                        <span class="myText text-primary">
+                            {{roles.length}}
+                        </span>
+                        <br>
+                        projets
+                        </div>
+                        <div>
+                            <span class="myText text-success" >
+                                {{rolesScrumMaster.length}}X
+                            </span>
+                            <br>
+                            Scrum master
+                            </div>
+                            <div>
+                                <span class="myText text-warning">
+                                    {{rolesPo.length}}X
+                                </span>
+                                <br>
+                                Product owner
+                                </div>
+                                <div>
+                                    <span class="myText text-info">
+                                        {{rolesDev.length}}X
+                                    </span>
+                                    <br>
+                                    membre de Developpement
+                                </div>
+                    </div>
+                </div>
+                <!-- end -->
+            </div><br>
+            </mat-card-content><br>
+          </mat-card><br><br>
+          <button style="background-color:rgb(255, 248, 207);
+color:black;
+margin-left:45%;
+width:15%;
+padding:5px;
+border:0px solid transparent" mat-dialog-close>Fermer</button>
+
+    </div>
+</mat-dialog-content>

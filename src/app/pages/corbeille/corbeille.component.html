@@ -1,0 +1,110 @@
+<div class="content">
+  <div class=" row">
+    <p class="corbeille"><i class="fas fa-trash-alt" style="color:rgb(216, 16, 16)"></i> Corbeille des tâches</p>
+    <div class=" col-md-12 d-flex bd-highlight">
+      <mat-form-field id="input" class="p-2 flex-grow-1 bd-highlight" appearance="fill">
+        <mat-label>Chercher  tâche</mat-label>
+        <input matInput [formControl]="chercher" placeholder="Ecrire ici...">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+      <button matTooltip="vider corbeille" (click)="viderCorbeille()" class="rounded p-2 bd-highlight" mat-fab
+        color="warn">
+        Vider
+      </button>
+    </div>
+  </div>
+  <div class="card">
+    <div id="premierePartie" class="card-header">
+      <h4 class=" card-title">
+        Votre Corbeille
+      </h4>
+      <p class=" category">Vous trouverez ici toutes les tâches supprimées du projet</p>
+    </div>
+    <div *ngIf="chercher.value ==''" class="card-body" id="deuxiemePartie">
+      <div class="row" *ngFor="let tache of tacheSprintMap | keyvalue;index as i">
+        <h2>Sprint {{i+1}} </h2>
+        <ng-container >
+          <div class="col-lg-3 col-md-3 col-sm-3" *ngFor="let ticketTache of tache.value;index as i">
+              <mat-card class="example-card" [ngStyle]="getBackgroundColor(i+1)" style="margin-top:6%;">
+                <mat-card-header>
+                  <mat-card-title class="title">
+                    #{{i+1}}&nbsp; - {{ticketTache.titre}}
+
+                  </mat-card-title>
+                  <mat-card-subtitle class="title">{{ticketTache.description}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <br>
+                  <p class="text-dark" style="font-family:serif">ticket histoire -> {{ticketTache.ht.titre}}</p>
+
+                </mat-card-content>
+                <hr>
+                <mat-card-footer>
+                  <div class="d-flex justify-content-around">
+
+                    <div class="ms-auto p-2 bd-highlight">
+                      <button mat-mini-fab color="primary" matTooltip="recycler cette tâche"
+                        (click)=" recycler(tache.key,ticketTache.id)" style="margin-top:-27%;border:1px solidblack;">
+                        <mat-icon>rotate_left</mat-icon>
+                      </button>
+
+                      <button mat-mini-fab color="accent" matTooltip="supprimer definitivement"
+                        (click)="supprimerDefinitive(tache.key,ticketTache.id)" style="margin-top:-27%;border:1px solidblack;">
+                        <mat-icon>delete_forever</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                </mat-card-footer>
+              </mat-card>
+          </div>
+        </ng-container>
+
+      </div>
+
+    </div>
+    <!-- filter -->
+    <div *ngIf="chercher.value !=''" class="card-body">
+      <div class="row" *ngFor="let tache of tacheSprintMapFiltred | keyvalue;index as i">
+        <h2>Sprint {{i+1}} </h2>
+        <ng-container >
+          <div class="col-lg-3 col-md-3 col-sm-3" *ngFor="let ticketTache of tache.value;index as i">
+              <mat-card class="example-card" [ngStyle]="getBackgroundColor(i+1)" style="margin-top:6%;">
+                <mat-card-header>
+                  <mat-card-title class="title">
+                    #{{i+1}}&nbsp; - {{ticketTache.titre}}
+
+                  </mat-card-title>
+                  <mat-card-subtitle class="title">{{ticketTache.description}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <br>
+                  <p class="text-dark" style="font-family:serif">ticket histoire -> {{ticketTache.ht.titre}}</p>
+
+                </mat-card-content>
+                <hr>
+                <mat-card-footer>
+                  <div class="d-flex justify-content-around">
+
+                    <div class="ms-auto p-2 bd-highlight">
+                      <button mat-mini-fab color="primary" matTooltip="recycler cette tâche"
+                        (click)=" recycler(tache.key,ticketTache.id)" style="margin-top:-27%;border:1px solidblack;">
+                        <mat-icon>rotate_left</mat-icon>
+                      </button>
+
+                      <button mat-mini-fab color="accent" matTooltip="supprimer definitivement"
+                        (click)="supprimerDefinitive(tache.key,ticketTache.id)" style="margin-top:-27%;border:1px solidblack;">
+                        <mat-icon>delete_forever</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                </mat-card-footer>
+              </mat-card>
+          </div>
+        </ng-container>
+
+      </div>
+
+    </div>
+    <!-- end -->
+  </div>
+</div>

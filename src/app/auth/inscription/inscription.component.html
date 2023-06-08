@@ -1,0 +1,143 @@
+<img class="registration-container" src="../../../assets/img/log.jpg" />
+<div class="registration-container">
+    <div class="card-inscription">
+        <div class="content" style="height:100%;">
+            <div class="row" style="height:99%;">
+                <div class="col-lg-7 col-sm-7 col-md-7 "  >
+                    <!--formulaire-->
+                    <mat-stepper  [linear]="true" class="w-100" #stepper>
+                        <mat-step [stepControl]="type">
+                            <!-- formControls -->
+                            <ng-template matStepLabel>Type</ng-template>
+
+                            <mat-radio-group  [formControl]="type" class="d-flex justify-content-around flex-row"
+                                aria-label="Select an option">
+                                <div class="d-flex flex-column">
+                                    <img class="h-100 w-100" src="../../../assets/img/membre.gif" />
+                                    <mat-radio-button value="membre" [checked]="membre"><span class="radio">Membre</span></mat-radio-button>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <img class="h-100 w-100" src="../../../assets/img/chef.gif" />
+                                    <mat-radio-button value="chef"><span class="radio">Chef de
+                                            Projet</span></mat-radio-button>
+                                </div>
+                            </mat-radio-group>
+                            
+                            <div class="d-flex flex-row-reverse">
+                                <button mat-raised-button color="primary" [disabled]="this.type.value==''" matStepperNext>Next</button>
+                                <button mat-raised-button routerLink="/auth" color="accent" matTooltip="retoure" style="margin-right:1%" >S'authentifier</button>
+                            </div>
+                            <!-- end conrtorls-->
+                        </mat-step>
+                        <mat-step [stepControl]="personneFormGroup" >
+                            <!-- formControls -->
+                            <form style="margin-top: 1%;" [formGroup]="personneFormGroup">
+                                <ng-template matStepLabel>Données personnelles</ng-template>
+                                <mat-form-field>
+                                  <mat-label>Nom</mat-label>
+                                  <input matInput formControlName="nom">
+                                  <mat-hint align="end">{{ personneFormGroup.get('nom').value?.length }} / 255</mat-hint>
+                                  <mat-error *ngIf="personneFormGroup.get('nom').invalid && (personneFormGroup.get('nom').dirty || personneFormGroup.get('nom').touched)">
+                                    <span *ngIf="personneFormGroup.get('nom').errors?.required">Le nom est requis.</span>
+                                    <span *ngIf="personneFormGroup.get('nom').errors?.maxlength">Le nom ne peut pas dépasser 50 caractères.</span>
+                                  </mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                  <mat-label>Prénom</mat-label>
+                                  <input matInput formControlName="prenom">
+                                  <mat-hint align="end">{{ personneFormGroup.get('prenom').value?.length }} / 255</mat-hint>
+                                  <mat-error *ngIf="personneFormGroup.get ('prenom').invalid && (personneFormGroup.get('prenom').dirty || personneFormGroup.get('prenom').touched)">
+                                    <span *ngIf="personneFormGroup.get('prenom').errors?.required">Le prénom est requis.</span>
+                                    <span *ngIf="personneFormGroup.get('prenom').errors?.maxlength">Le prénom ne peut pas dépasser 50 caractères.</span>
+                                  </mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                  <mat-label>Nom utilisateur</mat-label>
+                                  <input matInput formControlName="username">
+                                  <mat-hint align="end">{{ personneFormGroup.get('username').value?.length }} / 255</mat-hint>
+                                  <mat-error *ngIf="personneFormGroup.get('username').invalid && (personneFormGroup.get('username').dirty || personneFormGroup.get('username').touched)">
+                                    <span *ngIf="personneFormGroup.get('username').errors?.required">Le nom utilisateur est requis.</span>
+                                    <span *ngIf="personneFormGroup.get('username').errors?.maxlength">Le nom utilisateur ne peut pas dépasser 50 caractères.</span>
+                                  </mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                  <mat-label>Mot de passe</mat-label>
+                                  <input matInput formControlName="pwd" type="password">
+                                  <mat-hint align="end">{{ personneFormGroup.get('pwd').value?.length }} / 255</mat-hint>
+                                  <mat-error *ngIf="personneFormGroup.get('pwd').invalid && (personneFormGroup.get('pwd').dirty || personneFormGroup.get('pwd').touched)">
+                                    <span *ngIf="personneFormGroup.get('pwd').errors?.required">Le mot de passe est requis.</span>
+                                  </mat-error>
+                                </mat-form-field>
+                               
+                                <mat-form-field style="width:100%">
+                                  <mat-label>Email</mat-label>
+                                  <input matInput formControlName="email">
+                                  <mat-hint align="end">{{ personneFormGroup.get('email').value?.length }} / 255</mat-hint>
+                                  <mat-error *ngIf="personneFormGroup.get('email').invalid && (personneFormGroup.get('email').dirty || personneFormGroup.get('email').touched)">
+                                    <span *ngIf="personneFormGroup.get('email').errors?.required">L'email est requis.</span>
+                                    <span *ngIf="personneFormGroup.get('email').errors?.email" class="text-warning">adresse @mail non valide.</span>
+                                  </mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <mat-label>Téléphone</mat-label>
+                                    <input matInput formControlName="telephone">
+                                    <mat-hint align="end">{{personneFormGroup.get('telephone').value?.length || 0}}/8</mat-hint>
+                                    <mat-error *ngIf="personneFormGroup.get('telephone').invalid && (personneFormGroup.get('telephone').dirty || personneFormGroup.get('telephone').touched)">
+                                        <span *ngIf="personneFormGroup.get('telephone').errors.required">Téléphone est requis.</span>
+                                        <span *ngIf="personneFormGroup.get('telephone').errors.minlength">au moins 8 chiffres.</span>
+                                        <span *ngIf="personneFormGroup.get('telephone').errors.maxlength">Pas plus que 8 chiffre</span>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <mat-label>Adresse</mat-label>
+                                    <textarea matInput formControlName="adresse"></textarea>
+                                    <mat-error *ngIf="personneFormGroup.get('adresse').invalid && (personneFormGroup.get('adresse').dirty || personneFormGroup.get('adresse').touched)">
+                                        <span *ngIf="personneFormGroup.get('adresse').errors.required">Adresse est requis.</span>
+                                    </mat-error>
+                                </mat-form-field>
+                                <div class="d-flex justify-content-evenly">
+                                    <button mat-raised-button class="bg-dark text-light" matStepperPrevious>Back</button>
+                                    <button mat-raised-button (click)="inscriptionMembre()" [disabled]="personneFormGroup.invalid" *ngIf="type.value=='membre'" color="primary">S'inscrire</button>
+                                    <button mat-button matStepperNext *ngIf="type.value=='chef'">Next</button>
+                                </div>
+                            </form>
+                            <!-- end conrtorls-->
+                        </mat-step>
+                        <mat-step [optional]="type.value=='membre'"  [stepControl]="chefProjetFormGroup">
+                            <ng-template matStepLabel>chef </ng-template>
+                            <form [formGroup]="chefProjetFormGroup">
+                            <section class="example-section">
+                                <mat-checkbox formControlName="competanceAnalyseDonnees">analyse de données</mat-checkbox>
+                                <mat-checkbox formControlName="competanceDeGestion">gestion de Projet</mat-checkbox>
+                            </section>
+                            <!--zone image-->
+                          
+                            <div class="d-flex  flex-row">
+                                <webcam [trigger]="invokeObservable" *ngIf="type.value=='chef'" width="220" height="250" (imageCapture)="captureImg($event)"></webcam>
+                            <div class="d-flex flex-column" style="margin-left:3%;">
+                            <div id="results">Votre Photo prises...</div>
+                            <img width="100" style="margin-left:6%;" height="100" *ngIf="webcamImage" [src]="webcamImage?.imageAsDataUrl" />
+                            </div>
+                           </div>
+                           <button mat-mini-fab *ngIf="type.value=='chef'" color="primary" style="margin-top:-10%;margin-left:-1%" (click)="getSnapshot()">
+                            <mat-icon>camera_alt</mat-icon>
+                            </button>
+                            
+                            <!-- end -->
+                            <div class="d-flex justify-content-around">
+                                <button mat-raised-button  class="bg-dark text-light"  matStepperPrevious>Back</button>
+                                <button mat-raised-button  color="primary" *ngIf="type.value=='chef'" (click)="inscriptionChefProjet()">S'inscrire</button>
+                                <button mat-raised-button  color="warn"  (click)="stepper.reset()">Reset</button>
+                            </div>
+                        </form>
+                        </mat-step>
+                    </mat-stepper>
+                    <!-- end -->
+                </div>
+                <div class="col-lg-5 col-sm-5 col-md-5" style="height:100%;">
+                    <img src="../../../assets/img/numer.jpg" width="100%" height="100%" alt="logo" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

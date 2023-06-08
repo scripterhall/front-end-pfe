@@ -1,0 +1,40 @@
+<div class="card" [ngStyle]="{height : reponses.length==0 ? '94%' : 'auto'}">
+<ng-container *ngIf="reponses.length==0" >
+<div  class="d-flex justify-content-center" style="align-items: center;flex-direction:column;" >
+    <img src="../../../../assets/robot.gif" style="height:25rem" />
+    <h2 style="color:rgb(61, 61, 61)">Bonjour,
+        <span *ngIf="membre" class="text-primary">{{membre.username}}</span>
+        <span *ngIf="chefProjet" class="text-primary">{{chefProjet.username}}</span>
+         en quoi puis-je vous aider en Scrum ?
+    </h2>
+</div>
+</ng-container>
+<!-- block de chat -->
+<ng-container  *ngIf="reponses.length>0">
+<div style="max-height: 100%;"  *ngFor="let rep of reponses" class="d-flex bd-highlight mb-3" style="flex-direction: column;">
+
+    <div class="ms-auto p-2 bd-highlight d-flex  flex-row-reverse " style="background-color: rgba(0, 0, 0, 0.2);width:100%;">
+    <p class="m-1">{{rep.question.text}}</p>
+    <img
+     src="../../../../assets/user.jpg"
+      class="rounded-circle"
+      matTooltip="vous"
+      width="30"
+      height="30" />
+    </div>
+    <br>
+    <div class="p-2 bd-highlight d-flex  flex-row">
+        <img
+        src="../../../../assets/openai.png"
+         class="rounded-3"
+         matTooltip="vous"
+         width="40"
+         height="40" />
+    <p style="margin-left:2%;" *ngIf="rep.useHtml" [innerHTML]="rep.text"></p>
+    <p style="margin-left:2%;" *ngIf="!rep.useHtml">{{rep.text}}</p>
+    </div>
+</div>
+</ng-container>
+<!-- end -->
+
+</div>

@@ -1,0 +1,27 @@
+<div  class=" m-3 animate__animated animate__slideInUp h-25 w-100" data-mdb-animation-show-on-load="true">
+    <div class="card w-75">
+    <div class="row ">
+          <img
+            src="../../../../assets/img/emilyz.jpg"
+            alt="Trendy Pants and Shoes"
+
+            class="col-lg-4 col-md-4 img-fluid rounded-start h-100"
+          />
+
+        <div class="col-lg-8 col-md-8">
+            <br>
+            <h4 class="card-title card-excerpt">Je m'appel {{this.data.membre.nom}} 🤝</h4>
+            <p class="card-excerpt">
+                Je suis inscrit dans cette application le {{data.membre.dateInscription|date:'dd-MMMM-yyyy'}}
+            </p>
+            <p class="card-excerpt">
+               contacter moi : <a style="border:none;color:deepskyblue;text-decoration:underline"  [href]="'mailto:'+data.membre.email">{{data.membre.email}}</a>
+            </p>
+        </div>
+      </div>
+    </div>
+</div>
+<br>
+<div class=" chart-area" >
+    <canvas  width="" height="" id="avencement"></canvas>
+</div>

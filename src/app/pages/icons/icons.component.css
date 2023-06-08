@@ -1,0 +1,354 @@
+.fa-sharp{
+  color: green;
+  font-size: 20px;
+}
+
+
+#element{
+  height: 30px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#element:hover{
+  background-color: rgb(205, 227, 230);
+  transform: scale(0.98);
+}
+
+details {
+    /* border: 1px solid #ddd; */
+
+    padding: 10px;
+    border-bottom: none;
+  }
+
+  summary {
+
+    cursor: pointer;
+    outline: none;
+  }
+
+  .example-container {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 25px;
+  }
+
+  .example-list {
+    border: solid 1px #ccc;
+    min-height: 60px;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+#id{
+  min-height: 60px;
+  overflow: hidden;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.add-ticket-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.plus{
+font-size: 25px;
+color:black;
+font-weight: bold;
+}
+
+.add-ticket-button {
+  background-color: white;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  transition: background-color 0.3s ease;
+}
+
+.add-ticket-button:hover {
+  background-color: rgb(56, 184, 189);
+  color:white;
+}
+
+
+  .example-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ajout de cette ligne */
+    padding: 10px;
+    border-radius: 4px;
+    cursor: move;
+    background: rgb(255, 255, 255);
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+  }
+
+
+  .example-box:hover {
+    background-color: rgb(236, 234, 234);
+  }
+
+  .example-box:last-child {
+    border: none;
+  }
+
+
+  .example-box i.fa-clipboard-check {
+    margin-right: 10px;
+    color: #4CAF50;
+  }
+
+  .example-box span:nth-child(1) {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+
+  .example-box span.numTicket {
+    margin-right: 10px;
+  }
+
+  .example-box i#boutons {
+    margin-left: 2%;
+    cursor: pointer;
+  }
+
+  .example-box i#priorite {
+    margin-left: auto;
+    float: right;
+  }
+
+  .example-box i#btnDelete:hover {
+    color: red;
+  }
+
+  #btnDelete{
+    color:rgb(180, 0, 0);
+  }
+
+  .mat-tooltip {
+    max-width: 300px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.4em;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+  }
+
+.btn-lg{
+float: right;
+}
+
+  .add-ticket-button {
+    margin-left: auto;
+  }
+
+  .mat-tooltip-arrow {
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid #333;
+    position: absolute;
+  }
+
+  .mat-tooltip-above .mat-tooltip-arrow {
+    bottom: -8px;
+  }
+
+  .mat-tooltip-showing.mat-tooltip-above .mat-tooltip-arrow {
+    animation: tooltip-arrow-hover 0.2s linear;
+  }
+
+  @keyframes tooltip-arrow-hover {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  #deleteUSIcon {
+    color: red;
+    float: right;
+  }
+
+
+
+.font-icon-detail{
+border-color: green;
+}
+
+.font-icon-detail p {
+  color: #e44cc4 !important;
+  margin-top: 30px;
+  padding: 0 10px;
+  font-size: .7142em;
+}
+
+.btn-terminer{
+  border-radius: 5px;
+  border-color: #6cd36f;
+  background-color:transparent;
+  color: black;
+  font-family: monospace;
+  transition: all 1s;
+}
+
+.btn-terminer:hover{
+  background-color:#4CAF50;
+}
+
+.btn-done{
+  border-radius: 5px;
+  background-color:#4CAF50;;
+  color: #fff;
+  font-family: monospace;
+  transition: all 1s;
+}
+
+
+
+.card{
+  background-color: #b7cedf;
+}
+
+.bgGris{
+  background-color: rgb(141, 44, 44);
+  border-radius: 5%;
+  position: relative;
+  height: 200px;
+}
+
+.numSprint{
+  background-color: rgb(236, 236, 236);
+  border-radius: 15%;
+  text-align: center;
+  border-radius: 5%;
+  position: absolute;
+  width: 70%;
+  height: 20%;
+  top:-5%;
+  transform: translateX(-50%);
+  left: 50%;
+}
+
+.titre{
+  color:black;
+  text-align: center;
+  padding: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.velocite {
+  background-color: rgb(236, 236, 236);
+  color:black;
+  text-align: center;
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  padding: 5px;
+}
+
+
+.periode {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.periode span {
+  margin-bottom: 5px;
+  color:white;
+}
+
+#btnPlus{
+  background: linear-gradient(rgb(241, 241, 241), rgb(231, 231, 231));
+  border-radius: 5%;
+  position: relative;
+  height: 190px;
+  width: 200px;
+}
+
+
+#btnPlus:hover .plus {
+  color: #ffffff;
+}
+
+.titrePage{
+  color:white;
+  position: relative;
+  text-align: left;
+  margin-top: 1%;
+  margin-left: 1.5%;
+}
+
+.sprints{
+  font-size: 26px;
+  color: rgb(5, 44, 88);
+  font-weight: bold;
+}
+
+.description{
+  color: rgb(100, 96, 96);
+  font-size: 20px;
+}
+
+.content{
+  margin-top: 2%;
+}
+
+#productBacklog{
+  background-color: rgb(207, 207, 209);
+}
+
+
+.listeSelectSprints{
+  border: none;
+  background-color: rgb(219, 219, 219);
+  padding:2px;
+}
+
+.haute{
+  background-color: rgb(0, 216, 0);
+  border-radius: 20%;
+  color: white;
+}
+
+.moyenne{
+  background-color: orange;
+  border-radius: 30%;
+  color: white;
+}
+
+.faible{
+  color:black;
+  background-color: yellow;
+  border-radius: 30%;
+}
+
+.haute, .moyenne, .faible{
+  padding:5px;
+  text-align: center;
+}
+
+#btnListUS{
+}

@@ -1,0 +1,60 @@
+<h2 class="titreDialog"><i class="fas fa-plus"></i> Créer un ticket histoire<hr></h2>
+<mat-horizontal-stepper #stepper linear>
+  <mat-step [stepControl]="form.get('titre')">
+    <form [formGroup]="form">
+      <ng-template matStepLabel>
+        <span class="step-title">Etape 1: Titre et description</span>
+      </ng-template>
+
+      <mat-label>Titre <span style="color:red">*</span></mat-label>
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <input type="text" matInput placeholder="Nom du ticket histoire" formControlName="titre" required>
+      </mat-form-field>
+
+      <mat-label>Description</mat-label>
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <textarea matInput placeholder="Description du ticket histoire" formControlName="description"></textarea>
+      </mat-form-field>
+
+      <div class="button-container">
+        <button mat-button class="btnAnnuler" (click)="onNoClick()" matStepperPrevious>Annuler</button>
+        &nbsp; &nbsp; &nbsp; <button style="color:white; text-color:white" mat-button class="btnSuivant" matStepperNext [disabled]="!form.get('titre').valid && !form.get('description').valid">Suivant</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="form.get('priorite')">
+    <form [formGroup]="form">
+      <ng-template matStepLabel>
+        <span class="step-title">Etape 2: Priorité et effort</span>
+      </ng-template>
+
+      <mat-label>Priorité <span style="color:red">*</span></mat-label>
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-select name="priorite" formControlName="priorite" required>
+          <mat-option *ngFor="let priority of priorities" [value]="priority">{{priority}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-label>Effort <span style="color:red">*</span></mat-label>
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Effort</mat-label>
+        <mat-select formControlName="effort" name="effort" required>
+          <mat-option *ngFor="let num of efforts" [value]="num">{{ num }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="button-container">
+        <button mat-button class="btnRetour" matStepperPrevious>Retour</button>
+        &nbsp; &nbsp; &nbsp;
+        <button mat-button class="btnCreer" style="color:white; text-color:white" [disabled]="!form.valid" (click)="onSave()">Créer</button>
+      </div>
+    </form>
+  </mat-step>
+</mat-horizontal-stepper>
+
+
+
+
+
+

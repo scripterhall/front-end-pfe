@@ -1,0 +1,234 @@
+<div class="d-flex titreDialog">
+  <h1 mat-dialog-title class="mr-auto p-2 titre">Objectif du Sprint : {{data.sprint.objectif}} </h1>
+  <span class="d-flex">
+    <ng-container *ngIf="verifDate()">
+      <button mat-stroked-button *ngIf="data.sprint.etat !='terminer'" (click)="lancerSprintForcer()" class="p-2 m-1"
+        [disabled]="data.sprint.etat=='en cours' || this.data.canStart || this.data.TicketHistoires.length==0 "
+        color="primary">
+        Lancer sprint
+      </button>
+    </ng-container>
+    <span *ngIf="data.sprint.etat =='en cours'" class="etat text-infos"><i class="fas fa-spinner icone"></i> En
+      cours</span>
+    <span *ngIf="data.sprint.etat =='termine'" class="etat text-success"><i class="fas fa-check icone"></i>
+      Terminé</span>
+    <span *ngIf="data.sprint.etat =='en attente'" class="etat text-warning"><i
+        class="fas fa-exclamation-circle icone"></i> En attente</span>
+  </span>
+
+  <button mat-icon-button class="d-flex" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <span *ngIf="role=='dev team'">
+      <button (click)="supprimerSprint()" mat-menu-item *ngIf="data.sprint.etat == 'en attente' ">
+        <mat-icon>delete</mat-icon>
+        <span>supprimer</span>
+      </button>
+      <button (click)="showModif()" *ngIf="data.sprint.etat == 'en attente' " mat-menu-item>
+        <mat-icon>settings</mat-icon>
+        <span>modifier</span>
+      </button>
+    </span>
+  </mat-menu>
+</div>
+
+
+<div mat-dialog-content class="dialog-container">
+  <!--modifier objectif sprint-->
+  <ng-constainer *ngIf="modifActif">
+
+    <form [formGroup]="changeSprint" (ngSubmit)="terminerChangement()">
+      <mat-form-field class="w-75">
+        <mat-label>Objectif</mat-label>
+        <input matInput formControlName="objectif" required>
+        <mat-error *ngIf="changeSprint.controls.objectif.invalid && changeSprint.controls.objectif.touched">
+          L'objectif est requis.
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button style="margin-left:1%;" color="primary" type="submit" [disabled]="changeSprint.invalid">Valider</button>
+    </form>
+  </ng-constainer>
+  <!-- end -->
+
+  <button mat-raised-button class="btnDetails" (click)="showDetailSprint()">Plus de détails ...</button>
+  <br>
+  <ng-container *ngIf="isOpen">
+    <span style="margin-left:3%;" class="title">Vélocité : </span>
+    <span style="color:orange">{{data.sprint.velocite}} points</span>
+    <div class="container" style="margin-bottom:2%;">
+      <div class="row">
+        <div class="col-lg-5 col-md-4">
+          <!-- cal debut-->
+          <span class="badge badge-success">Lancement : </span>
+
+          <mat-calendar class="custom-calendar mat-calendar-body " [maxDate]="data.sprint.dateLancement"
+            [minDate]="data.sprint.dateLancement" #calendar [(selected)]="data.sprint.dateLancement">
+
+          </mat-calendar>
+
+          <!-- cal end-->
+        </div>
+
+        <div class="col-lg-2 d-flex col-md-2">
+          <!-- trans-->
+          <mat-icon class="display-4" style="margin-left:50%;margin-top:100%;z-index:100;">forward</mat-icon>
+          <!-- trans end -->
+        </div>
+        <div class="col-lg-5 col-md-4">
+          <!-- cal fin-->
+          <span class="badge badge-success">Finalisation : </span>
+
+          <mat-calendar [maxDate]="data.sprint.dateFin" [minDate]="data.sprint.dateFin"
+            class="custom-calendar mat-calendar-body" #calendarFin [(selected)]="data.sprint.dateFin">
+
+          </mat-calendar>
+
+          <!-- cal end -->
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <!-- contenu de ticket tache -->
+  <div class="container">
+    <div style="height:100%; text-align:center" *ngIf="data.TicketHistoires.length==0">
+
+      <p class="title text-dark">
+        <span style="text-align:center;color:red">
+          <i class="fas fa-exclamation-triangle"></i> Attention
+        </span>
+      </p>
+
+
+      <p class="title text-dark">Aucun ticket histoire attaché à ce sprint</p>
+      <p class="title text-dark">Le sprint ne peut pas être lancé ...</p>
+    </div>
+    <div class="row" *ngFor="let ht of data.TicketHistoires;index as i">
+      <div class="col-md-12">
+        <mat-card class="example-card d-flex">
+          <button *ngIf="modifActif" mat-mini-fab style="margin-bottom:-9%;" (click)="detacherHt(ht,i)" color="warn"
+            class="p-2 bd-highlight ms-auto">
+            <mat-icon>clear</mat-icon>
+          </button>
+          <mat-card-header>
+            <mat-card-subtitle class="d-flex bd-highlight mb-3 ">
+              <mat-icon class="text-success">featured_play_list</mat-icon>
+              &nbsp;&nbsp;
+              <h1 class="text-dark">{{ht.titre}}</h1>
+            </mat-card-subtitle>
+            <mat-card-title>
+
+              Etat de Ticket :<mat-icon>farward_arrow</mat-icon>
+              <span style="margin-left:-2%;" class="badge rounded-pill" [ngClass]="{
+                'bg-success': ht.status === 'TERMINER',
+                'bg-warning': ht.status === 'EN_ATTENTE',
+                'bg-primary': ht.status !== 'TERMINER' && ht.etat !== 'EN_ATTENTE'
+              }">{{ht.status}}</span>
+
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <br>
+            <div class="d-flex title">
+              <mat-icon [ngClass]="ht.priorite === 'haute'
+            ? 'text-danger' : (ht.priorite === 'moyenne'
+            ? 'text-warning' : 'text-success')">
+                flag
+              </mat-icon>
+              {{projet?.cles}}-{{ht.id}}
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              {{ht.description}}
+            </div>
+
+            <br>
+            <details (toggle)="afficherTicketTache(ht)" #tacheDetails>
+              <summary>liste des tâches </summary>
+              <mat-card style="margin-top:2%;height:10%;margin-bottom:2%;"
+                *ngFor="let tt of ticketTacheList;index as i">
+                <mat-card-content>
+                  <div class="row d-flex">
+                    <div class="col-lg-3 d-flex">
+
+                      {{tt.titre}}
+                    </div>
+                    <div class="col-lg-4 col-md-3">
+                      {{tt.description}}
+
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                      <span class="badge badge-danger">nombre heurs : {{tt.nbHeurs}}H</span>
+
+                    </div>
+                    <div class="col-lg-1 col-md-1" *ngIf="role=='dev team'">
+                      <button mat-mini-fab (click)="supprimerTicketTache(i)"
+                        *ngIf="this.data.sprint.etat=='en attente' && membre && tt.membreId == membre?.id " color="warn"
+                        aria-label="icon pour supprimer une tache">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+              <button *ngIf="role=='dev team'" (click)="showFormAjout()" mat-button
+                style="margin-bottom:9%;border:1px solid purple;border-top:none;margin-top:-2%;" color="warn">
+                <mat-icon class="text-primary w-75">
+                  note_add
+                </mat-icon>
+              </button>
+
+              <!-- form d'ajout -->
+
+              <form [formGroup]="this.ticketTacheForm" (ngSubmit)="ajouterTicketTache(ht)" *ngIf="ajouterTick">
+
+                <mat-form-field class="d-flex">
+                  <mat-label>Titre</mat-label>
+                  <textarea matInput formControlName="titre" placeholder="Ex. It makes me feel..."></textarea>
+                  <mat-error *ngIf="ticketTacheForm.get('titre').hasError('required')">Ce champ est
+                    obligatoire</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="d-flex">
+                  <mat-label>description</mat-label>
+                  <textarea matInput formControlName="description" placeholder="Ex. It makes me feel..."></textarea>
+                  <mat-error *ngIf="ticketTacheForm.get('description').hasError('required')">Ce champ est
+                    obligatoire</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Nombre d'heures</mat-label>
+                  <input type="number" matInput formControlName="nbHeurs">
+                  <mat-error *ngIf="ticketTacheForm.get('nbHeurs').hasError('required')">Ce champ est
+                    obligatoire</mat-error>
+                </mat-form-field>
+
+                <button style="margin-left:3%;" mat-raised-button color="accent" type="submit"
+                  [disabled]="this.ticketTacheForm.invalid">Créer</button>
+              </form>
+
+              <!-- end -->
+
+            </details>
+
+
+            <!-- end -->
+
+            <mat-divider></mat-divider>
+          </mat-card-content>
+
+          <mat-card-footer>
+            <mat-progress-bar class="bg-success" mode="indeterminate"></mat-progress-bar>
+          </mat-card-footer>
+        </mat-card>
+        <br>
+        <!-- liste des tache pour chaque ticket de histoire  -->
+
+
+
+      </div>
+    </div>
+    <button mat-raised-button class="btnAnnuler" [mat-dialog-close]="data.TicketHistoires"
+      cdkFocusInitial>Annuler</button>
+
+  </div>
+</div>

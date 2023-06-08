@@ -1,0 +1,33 @@
+<form [formGroup]="form" (ngSubmit)="onSave()" class="form-container">
+  <mat-form-field class="form-field">
+    <mat-label>Objectif</mat-label>
+    <input matInput formControlName="objectif" required>
+    <mat-error *ngIf="form?.get('objectif')?.hasError('required')">Ce champ est obligatoire.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <mat-label>Date de lancement</mat-label>
+    <input type="text" matInput [matDatepicker]="picker1" formControlName="dateLancement" required>
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+    <mat-error *ngIf="form?.controls['dateLancement']?.hasError('dateInvalid')"
+    class="mat-error">La date doit être supérieure ou égale à la date système</mat-error>
+
+  </mat-form-field>
+
+
+  <mat-form-field class="form-field">
+    <mat-label>Date de fin</mat-label>
+    <input type="text" matInput [matDatepicker]="picker2" formControlName="dateFin">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+    <mat-error *ngIf="form?.get('dateFin')?.hasError('dateFinInvalide')">La date de fin doit être ultérieure à la date de lancement.</mat-error>
+  </mat-form-field>
+
+
+  <span class="button-row">
+    <button mat-raised-button color="primary" type="submit" class="form-button" [disabled]="form.invalid">Enregistrer</button>
+    <button mat-raised-button mat-dialog-close class="form-button">Annuler</button>
+  </span>
+
+</form>

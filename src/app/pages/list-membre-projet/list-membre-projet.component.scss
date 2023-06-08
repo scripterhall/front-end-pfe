@@ -1,0 +1,58 @@
+ul {
+    list-style: none; /* Supprime les puces par défaut */
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    font-family: serif ;
+}
+li::before{
+    content: "🢫";
+}
+ul ul li:before {
+    content: ">"; /* Définit le contenu de l'icône */
+    margin-right: 10px; /* Ajoute de l'espace entre l'icône et le texte */
+    color: #f00; /* Définit la couleur de l'icône */
+    font-size: 1.2em; /* Définit la taille de l'icône */
+  }
+
+  .card {
+    background: rgb(236, 236, 236);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+
+  .titre{
+    color:rgb(102, 102, 102);
+    text-align: center;
+    font-weight: bold;
+  }
+
+.profilDev{
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  width: 150px;
+  height:150px;
+  border-radius: 10%;
+}
+
+.nomPrenom{
+  color:black;
+  text-align: center;
+  font-size:25px;
+}
+
+.body{
+  background-color:rgb(212, 212, 212);
+  width: 90%;
+  border-radius: 10%;
+  text-align: center;
+  padding:5px;
+  margin-left: 6%;
+}
+
+.card-footer{
+  text-align: center;
+}
+
+.date{
+  color:black;
+}
